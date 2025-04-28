@@ -1,0 +1,85 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordCount Realms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: '#F5F0E1',
+                        deepnight: '#1C1F26',
+                        royalblue: '#3B5BDB',
+                        silver: '#C0C0C0'
+                    },
+                    fontFamily: {
+                        fantasy: ['Merriweather', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+</head>
+
+<body class="bg-parchment dark:bg-deepnight text-gray-900 dark:text-silver font-fantasy min-h-screen flex flex-col">
+    <header class="p-6 flex justify-between items-center border-b border-gray-300 dark:border-gray-700">
+        <h1 class="text-3xl font-bold">WordCount Realms</h1>
+        <button id="theme-toggle" class="text-xl">🌙</button>
+    </header>
+
+    <main class="flex-grow container mx-auto p-6">
+        <section class="mb-8">
+            <h2 class="text-2xl mb-4">Select a Book</h2>
+            <div class="flex gap-4 items-center">
+                <select id="book-select"
+                    class="p-2 rounded border border-gray-400 dark:border-gray-600 bg-white dark:bg-deepnight">
+                    <option value="">-- Select a book --</option>
+                </select>
+                <button id="load-words" class="px-4 py-2 bg-royalblue text-white rounded hover:bg-blue-700">Load Top
+                    Words</button>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl mb-4">Upload a New Book</h2>
+            <form id="upload-form" class="flex flex-col gap-4">
+                <input type="text" name="title" placeholder="Book Title"
+                    class="p-2 rounded border border-gray-400 dark:border-gray-600 bg-white dark:bg-deepnight">
+                <input type="file" name="file" accept=".txt"
+                    class="p-2 rounded border border-gray-400 dark:border-gray-600">
+                <button type="submit" class="px-4 py-2 bg-royalblue text-white rounded hover:bg-blue-700">Upload
+                    Book</button>
+            </form>
+        </section>
+
+        <section>
+            <h2 class="text-2xl mb-4">Top Words</h2>
+            <table class="min-w-full border border-gray-400 dark:border-gray-600">
+                <thead class="bg-royalblue text-white">
+                    <tr>
+                        <th class="p-2">Word</th>
+                        <th class="p-2">Count</th>
+                    </tr>
+                </thead>
+                <tbody id="word-table" class="bg-white dark:bg-deepnight">
+                    <!-- dynamic content here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="" p-6 text-center border-t border-gray-300 dark:border-gray-700 text-sm">
+        Crafted in the Realms, 2025
+    </footer>
+
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
