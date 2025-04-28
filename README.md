@@ -85,7 +85,7 @@ Failed to save book
  1. Clone the repository:
 ```
 git clone https://github.com/your-username/my-wordcount-server.git  
-cd my-wordcount-server  
+cd wordcount-server-rust 
 ```  
  2. Set up your environment:
 ```
