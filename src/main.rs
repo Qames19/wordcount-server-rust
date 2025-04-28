@@ -74,7 +74,12 @@ async fn top_words_handler(
         .cloned()
         .unwrap_or_else(|| "pride-and-prejudice".to_string());
 
-    match redis_store::get_top_words(&redis_client, &book, 20).await {
+    let n = params
+        .get("n")
+        .and_then(|n| n.parse::<usize>().ok())
+        .unwrap_or(10);
+
+    match redis_store::get_top_words(&redis_client, &book, n).await {
         Ok(words) => {
             let response: Vec<WordCount> = words
                 .into_iter()

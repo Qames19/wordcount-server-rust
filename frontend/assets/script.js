@@ -25,7 +25,10 @@ async function loadTopWords() {
     const book = select.value;
     if (!book) return;
 
-    const response = await fetch(`/api/top-words?book=${encodeURIComponent(book)}`);
+    const nInput = document.getElementById('top-n');
+    const n = nInput.value || 10;
+
+    const response = await fetch(`/api/top-words?book=${encodeURIComponent(book)}&n=${n}`);
     const words = await response.json();
     const table = document.getElementById('word-table');
 
