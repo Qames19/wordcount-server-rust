@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WordCount Realms</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -62,19 +63,41 @@
             </form>
         </section>
 
-        <section>
-            <h2 class="text-2xl mb-4">Top Words</h2>
-            <table class="min-w-full border border-gray-400 dark:border-gray-600">
-                <thead class="bg-royalblue text-white">
-                    <tr>
-                        <th class="p-2">Word</th>
-                        <th class="p-2">Count</th>
-                    </tr>
-                </thead>
-                <tbody id="word-table" class="bg-white dark:bg-deepnight">
-                    <!-- dynamic content here -->
-                </tbody>
-            </table>
+        <section class="mt-12">
+            <h2 class="text-2xl mb-4">Visualizations</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Table card -->
+                <div class="bg-white dark:bg-deepnight rounded shadow p-4 overflow-y-auto max-h-[500px] cursor-pointer"
+                    data-popup="table">
+                    <h3 class="text-lg font-semibold mb-2">Top Words Table</h3>
+                    <table class="min-w-full border border-gray-400 dark:border-gray-600">
+                        <thead class="bg-royalblue text-white">
+                            <tr>
+                                <th class="p-2">Word</th>
+                                <th class="p-2">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody id="word-table" class="bg-white dark:bg-deepnight">
+                            <!-- dynamic content here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Bar chart card -->
+                <div class="bg-white dark:bg-deepnight rounded shadow p-4 cursor-pointer" data-popup="bar">
+                    <h3 class="text-lg font-semibold mb-2">Bar Chart</h3>
+                    <canvas id="bar-chart" class="w-full h-72"></canvas>
+                </div>
+
+                <!-- Pie chart card -->
+                <div class="bg-white dark:bg-deepnight rounded shadow p-4 cursor-pointer" data-popup="pie">
+                    <h3 class="text-lg font-semibold mb-2">Pie Chart</h3>
+                    <canvas id="pie-chart" class="w-full h-72"></canvas>
+                </div>
+
+            </div>
         </section>
     </main>
 
@@ -83,6 +106,17 @@
     </footer>
 
     <script src="assets/script.js"></script>
+    <div id="popup-overlay"
+        class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-deepnight rounded shadow-lg p-6 max-w-4xl w-full h-[80vh] overflow-auto relative">
+            <button id="close-popup"
+                class="absolute top-2 right-2 text-lg text-gray-700 dark:text-gray-300 hover:text-red-500">✖</button>
+            <div id="popup-content">
+                <!-- dynamic content goes here -->
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
